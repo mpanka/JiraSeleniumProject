@@ -18,7 +18,7 @@ public class BasePageObject {
     }
 
     public void waitForVisibility(WebElement element) throws Error{
-        new WebDriverWait(driver, 5)
+        new WebDriverWait(driver, 7)
                 .until(ExpectedConditions.visibilityOf(element));
     }
 

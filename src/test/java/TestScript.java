@@ -34,15 +34,6 @@ public class TestScript {
     }
 
     @Test
-    public void selectProject() {
-        browseProject.pressProjectMenuButton();
-        browseProject.pressProjectViewAllButton();
-        browseProject.filterToMTPProject();
-        browseProject.pressProjectNameLink();
-        Assert.assertEquals(browseProject.validateProjectTitleToBrowseProject(), "MTP" );
-    }
-
-    @Test
     public void createIssueHappyWay() {
         createIssue.pressCreateMenuButton();
         createIssue.enterNewSummary("Success!");
@@ -54,6 +45,7 @@ public class TestScript {
 
     @AfterEach
     public void afterEach() {
+        browseProject.setMainProject();
         mainPage.logout();
     }
 

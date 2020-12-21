@@ -46,4 +46,11 @@ public class BrowseProjectPage extends BasePageObject{
     }
 
     public String validateProjectTitleToBrowseProject() { return validateAssertEquals(projectKey); }
+
+    public void setMainProject() {
+        pressProjectMenuButton();
+        pressProjectViewAllButton();
+        filterToMTPProject();
+        pressProjectNameLink();
+    }
 }

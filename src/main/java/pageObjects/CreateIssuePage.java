@@ -81,7 +81,7 @@ public class CreateIssuePage extends BasePageObject{
 
     //public String validateErrorMessageToCreateIssue() { return validateAssertEquals(errorMessageToCreate); }
 
-    public void waitForOppenIssueTitle() { waitForVisibility(openIssuesTitle); }
+    public void waitForOpenIssueTitle() { waitForVisibility(openIssuesTitle); }
 
     //public void pressCancelButtonToCreateIssue() { press(cancelButton); }
 }

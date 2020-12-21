@@ -43,7 +43,4 @@ public class LoginPage extends BasePageObject {
         press(loginButton);
         waitForVisibility(createLink);
     }
-
-
-
 }
