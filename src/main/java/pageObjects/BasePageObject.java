@@ -28,7 +28,6 @@ public class BasePageObject {
     }
 
     private void maximizeWindow() {
-        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
     }
 
