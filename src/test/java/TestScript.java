@@ -31,6 +31,15 @@ public class TestScript {
         Assert.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData );
     }
 
+    @Test
+    public void selectProject() {
+        browseProject.pressProjectMenuButton();
+        browseProject.pressProjectViewAllButton();
+        browseProject.filterToMTPProject();
+        browseProject.pressProjectNameLink();
+        Assert.assertEquals(browseProject.validateProjectTitleToBrowseProject(), "MTP" );
+    }
+
     @AfterEach
     public void afterEach() {
         mainPage.logout();
