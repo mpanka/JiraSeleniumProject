@@ -3,6 +3,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pageObjects.BrowseProjectPage;
+import pageObjects.CreateIssuePage;
 import pageObjects.LoginPage;
 import pageObjects.MainPage;
 import utils.Util;
@@ -12,6 +13,7 @@ public class TestScript {
     private final LoginPage login = new LoginPage(Util.DRIVER);
     private final BrowseProjectPage browseProject = new BrowseProjectPage(Util.DRIVER);
     private final MainPage mainPage = new MainPage(Util.DRIVER);
+    private final CreateIssuePage createIssue = new CreateIssuePage(Util.DRIVER);
 
     @BeforeAll
     public static void setup() {
@@ -38,6 +40,16 @@ public class TestScript {
         browseProject.filterToMTPProject();
         browseProject.pressProjectNameLink();
         Assert.assertEquals(browseProject.validateProjectTitleToBrowseProject(), "MTP" );
+    }
+
+    @Test
+    public void createIssueHappyWay() {
+        createIssue.pressCreateMenuButton();
+        createIssue.enterNewSummary("Success!");
+        createIssue.pressCreateIssueSubmitButton();
+        createIssue.pressMTPProjectNameLink();
+        Assert.assertEquals(createIssue.validateSummaryValueToCreateIssue(),"Success!");
+        createIssue.deleteIssue();
     }
 
     @AfterEach
