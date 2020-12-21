@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,6 +40,12 @@ public class CreateIssuePage extends BasePageObject{
     @FindBy(id = "create_link")
     protected WebElement createLink;
 
+    @FindBy(xpath = "//*[@id='issuetype-field']")
+    protected WebElement issueTypeField;
+
+    @FindBy(xpath = "//*[@id='project-field']")
+    private WebElement projectField;
+
     public CreateIssuePage(WebDriver driver) {
         super(driver);
     }
@@ -59,7 +66,13 @@ public class CreateIssuePage extends BasePageObject{
 
     public void pressCreateIssueSubmitButton() { press(creatIssueSubmit); }
 
+    public void enterNewProject(String projectName) {
+        enter(projects, projectName);
+    }
+
     public void enterNewSummary(String newSummary) { enter(summary,newSummary); }
+
+    public void enterNewIssueType(String newIssueType) { enter(issueTypeField, newIssueType); }
 
     public void pressCreateMenuButton() { press(createLink); }
 
@@ -75,6 +88,16 @@ public class CreateIssuePage extends BasePageObject{
         pressMoreMenuButton();
         pressDeleteIssueButtonIsAvailable();
         pressDeleteIssueSubmitButton();
+    }
+
+    public void verifyProjectField(String projectName) {
+        String projectNameValue = projectField.getAttribute("value");
+        Assert.assertEquals(projectName, projectNameValue);
+    }
+
+    public void verifyIssueType(String issueType) {
+        String issueTypeValue = issueTypeField.getAttribute("value");
+        Assert.assertEquals(issueType, issueTypeValue);
     }
 
     public boolean validateCreateSubtaskIsAvailable() { return validateIsEnabled(subtaskLink); }

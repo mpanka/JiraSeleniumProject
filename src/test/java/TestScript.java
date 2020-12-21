@@ -29,7 +29,8 @@ public class TestScript {
     @DisplayName("Browse Projects")
     @CsvFileSource(resources = "/BrowseProjectData.csv", numLinesToSkip = 1)
     public void browseProjectIsPossible(String url, String assertData) {
-        browseProject.openProjectPage(url);
+        String fullURL = String.format("%s/projects/%s/summary", Util.BASE_URL, url);
+        browseProject.openProjectPage(fullURL);
         Assert.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData );
     }
 
