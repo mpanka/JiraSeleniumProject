@@ -21,9 +21,7 @@ public class EditIssuePage extends BasePageObject{
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
     protected WebElement updateAlert;
 
-    public EditIssuePage(WebDriver driver) {
-        super(driver);
-    }
+    public EditIssuePage(WebDriver driver) { super(driver); }
 
     public void waitForCreateLink() { waitForVisibility(createLink); }
 

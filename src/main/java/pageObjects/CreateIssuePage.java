@@ -21,20 +21,11 @@ public class CreateIssuePage extends BasePageObject{
     @FindBy(id = "delete-issue-submit")
     protected WebElement deleteIssueSubmitButton;
 
-    @FindBy(partialLinkText = "project")
-    protected WebElement projects;
-
     @FindBy(xpath = "//*[@id='create-subtask']/a/span")
     protected WebElement subtaskLink;
 
     @FindBy(xpath = "//*[@id='issues-subnavigation-title']")
     protected WebElement openIssuesTitle;
-
-    @FindBy(xpath = "//*[@id='issuetype-field']")
-    protected WebElement issueTypeField;
-
-    @FindBy(xpath = "//*[@id='project-field']")
-    private WebElement projectField;
 
     @FindBy(xpath = "//*[@id='create-issue-dialog']/div[2]/div[1]/div/form/div[2]/div/a")
     protected WebElement cancelButton;
@@ -62,13 +53,7 @@ public class CreateIssuePage extends BasePageObject{
 
     public void pressCreateIssueSubmitButton() { press(creatIssueSubmit); }
 
-    public void enterNewProject(String projectName) {
-        enter(projects, projectName);
-    }
-
     public void enterNewSummary(String newSummary) { enter(summary,newSummary); }
-
-    public void enterNewIssueType(String newIssueType) { enter(issueTypeField, newIssueType); }
 
     public void pressCreateMenuButton() { press(createLink); }
 
