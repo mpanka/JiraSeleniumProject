@@ -54,6 +54,32 @@ public class TestScript {
         Assert.assertTrue("create subtask should be available", createIssue.validateCreateSubtaskIsAvailable());
     }
 
+    @Test
+    public void createIssueWithEmptyFields() {
+        createIssue.pressCreateMenuButton();
+        createIssue.pressCreateIssueSubmitButton();
+        Assert.assertEquals(createIssue.validateErrorMessageToCreateIssue(),"You must specify a summary of the issue.");
+        createIssue.pressCancelButtonToCreateIssue();
+        createIssue.acceptAlert();
+        createIssue.openIssuePage(Util.openIssuesUrl);
+        createIssue.waitForOpenIssueTitle();
+        Assert.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"Empty");
+    }
+
+    @Test
+    public void cancelCreateIssue() {
+        createIssue.pressCreateMenuButton();
+        createIssue.enterNewSummary("cancel issue test!");
+        createIssue.pressCancelButtonToCreateIssue();
+        createIssue.dismissAlert();
+        createIssue.pressCancelButtonToCreateIssue();
+        createIssue.acceptAlert();
+        createIssue.openIssuePage(Util.openIssuesUrl);
+        createIssue.waitForOpenIssueTitle();
+        Assert.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"cancel issue test!");
+    }
+
+
     @AfterEach
     public void afterEach() {
         browseProject.setMainProject();

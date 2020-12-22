@@ -46,6 +46,12 @@ public class CreateIssuePage extends BasePageObject{
     @FindBy(xpath = "//*[@id='project-field']")
     private WebElement projectField;
 
+    @FindBy(xpath = "//*[@id='create-issue-dialog']/div[2]/div[1]/div/form/div[2]/div/a")
+    protected WebElement cancelButton;
+
+    @FindBy(xpath = "//*[@id='create-issue-dialog']/div[2]/div[1]/div/form/div[1]/div[2]/div[1]/div")
+    protected WebElement errorMessageToCreate;
+
     public CreateIssuePage(WebDriver driver) {
         super(driver);
     }
@@ -102,9 +108,9 @@ public class CreateIssuePage extends BasePageObject{
 
     public boolean validateCreateSubtaskIsAvailable() { return validateIsEnabled(subtaskLink); }
 
-    //public String validateErrorMessageToCreateIssue() { return validateAssertEquals(errorMessageToCreate); }
+    public String validateErrorMessageToCreateIssue() { return validateAssertEquals(errorMessageToCreate); }
 
     public void waitForOpenIssueTitle() { waitForVisibility(openIssuesTitle); }
 
-    //public void pressCancelButtonToCreateIssue() { press(cancelButton); }
+    public void pressCancelButtonToCreateIssue() { press(cancelButton); }
 }
