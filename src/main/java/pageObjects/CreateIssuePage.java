@@ -1,6 +1,5 @@
 package pageObjects;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,15 +29,6 @@ public class CreateIssuePage extends BasePageObject{
 
     @FindBy(xpath = "//*[@id='issues-subnavigation-title']")
     protected WebElement openIssuesTitle;
-
-    @FindBy(id = "summary")
-    protected WebElement summary;
-
-    @FindBy(id = "summary-val")
-    protected WebElement summaryValue;
-
-    @FindBy(id = "create_link")
-    protected WebElement createLink;
 
     @FindBy(xpath = "//*[@id='issuetype-field']")
     protected WebElement issueTypeField;
@@ -94,16 +84,6 @@ public class CreateIssuePage extends BasePageObject{
         pressMoreMenuButton();
         pressDeleteIssueButtonIsAvailable();
         pressDeleteIssueSubmitButton();
-    }
-
-    public void verifyProjectField(String projectName) {
-        String projectNameValue = projectField.getAttribute("value");
-        Assert.assertEquals(projectName, projectNameValue);
-    }
-
-    public void verifyIssueType(String issueType) {
-        String issueTypeValue = issueTypeField.getAttribute("value");
-        Assert.assertEquals(issueType, issueTypeValue);
     }
 
     public boolean validateCreateSubtaskIsAvailable() { return validateIsEnabled(subtaskLink); }

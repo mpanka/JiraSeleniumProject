@@ -12,6 +12,7 @@ public class TestScript {
     private final MainPage mainPage = new MainPage(Util.DRIVER);
     private final CreateIssuePage createIssue = new CreateIssuePage(Util.DRIVER);
     private final BrowseIssuePage browseIssue = new BrowseIssuePage(Util.DRIVER);
+    private final EditIssuePage editIssue = new EditIssuePage(Util.DRIVER);
 
     @BeforeAll
     public static void setup() {
@@ -90,6 +91,51 @@ public class TestScript {
         String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
         browseIssue.openTestIssuePage(fullURL);
         Assert.assertTrue("issue header should be available", browseIssue.validateHeaderIsAvailable());
+    }
+
+    @Test
+    public void editIssueHappyPath() {
+        editIssue.openIssuePage(Util.testIssueUrl);
+        editIssue.pressEditIssueButton();
+        editIssue.enterNewSummary("Edited test");
+        editIssue.pressUpdateButton();
+        editIssue.waitForUpdateAlert();
+        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Edited test");
+        editIssue.pressEditIssueButton();
+        editIssue.enterNewSummary("Success!");
+        editIssue.pressUpdateButton();
+        editIssue.waitForCreateLink();
+    }
+
+    @ParameterizedTest()
+    @DisplayName("Edit issues for Projects")
+    @CsvFileSource(resources = "/BrowseIssueData.csv", numLinesToSkip = 1)
+    public void editIssuesForProjects(String issue) {
+        String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
+        editIssue.openIssuePage(fullURL);
+        Assert.assertTrue("edit button should be available", editIssue.validateEditIssueButtonIsAvailable());
+    }
+
+    @Test
+    public void editIssueToEmptyField() {
+        editIssue.openIssuePage(Util.testIssueUrl);
+        editIssue.pressEditIssueButton();
+        editIssue.enterNewSummary("");
+        editIssue.pressUpdateButton();
+        Assert.assertEquals(editIssue.validateErrorMessageToEditIssue(),"You must specify a summary of the issue.");
+        editIssue.pressCancelButtonToEdit();
+        editIssue.acceptAlert();
+        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
+    }
+
+    @Test
+    public void cancelEditIssue() {
+        editIssue.openIssuePage(Util.testIssueUrl);
+        editIssue.pressEditIssueButton();
+        editIssue.enterNewSummary("cancel edited test");
+        editIssue.pressCancelButtonToEdit();
+        editIssue.acceptAlert();
+        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
     }
 
     @AfterEach
