@@ -1,4 +1,10 @@
-project,issueType1,issueType2,issueType3
-TOUCAN,Bug,Story,Task
-COALA,Bug,Story,Task
-JETI,Bug,Story,Task
+projectName,issueType,assertProjectName,assertIssueType
+TOUCAN,Story,TOUCAN projekt (TOUCAN),Story
+TOUCAN,Bug,TOUCAN projekt (TOUCAN),Bug
+TOUCAN,Task,TOUCAN projekt (TOUCAN),Task
+JETI,Story,JETI Project (JETI),Story
+JETI,Bug,JETI Project (JETI),Bug
+JETI,Task,JETI Project (JETI),Task
+COALA,Story,COALA Project (COALA),Story
+COALA,Bug,COALA Project (COALA),Bug
+COALA,Task,COALA Project (COALA),Task

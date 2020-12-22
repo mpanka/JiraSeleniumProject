@@ -44,6 +44,16 @@ public class TestScript {
         createIssue.deleteIssue();
     }
 
+    @ParameterizedTest()
+    @DisplayName("Create SubTask for Projects")
+    @CsvFileSource(resources = "/CreateSubtaskData.csv", numLinesToSkip = 1)
+    public void createSubTaskForProjectsIsPossible(String issue) {
+        String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
+        createIssue.openIssuePage(fullURL);
+        createIssue.pressMoreMenuButton();
+        Assert.assertTrue("create subtask should be available", createIssue.validateCreateSubtaskIsAvailable());
+    }
+
     @AfterEach
     public void afterEach() {
         browseProject.setMainProject();
