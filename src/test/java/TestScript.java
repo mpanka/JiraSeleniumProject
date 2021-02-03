@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -30,7 +29,7 @@ public class TestScript {
     public void browseProjectIsPossible(String url, String assertData) {
         String fullURL = String.format("%s/projects/%s/summary", Util.BASE_URL, url);
         browseProject.openProjectPage(fullURL);
-        Assert.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData );
+        Assertions.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData );
     }
 
     @Test
@@ -39,7 +38,7 @@ public class TestScript {
         createIssue.enterNewSummary("Success!");
         createIssue.pressCreateIssueSubmitButton();
         createIssue.pressMTPProjectNameLink();
-        Assert.assertEquals(createIssue.validateSummaryValueToCreateIssue(),"Success!");
+        Assertions.assertEquals(createIssue.validateSummaryValueToCreateIssue(),"Success!");
         createIssue.deleteIssue();
     }
 
@@ -50,19 +49,19 @@ public class TestScript {
         String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
         createIssue.openIssuePage(fullURL);
         createIssue.pressMoreMenuButton();
-        Assert.assertTrue("create subtask should be available", createIssue.validateCreateSubtaskIsAvailable());
+        Assertions.assertTrue(createIssue.validateCreateSubtaskIsAvailable(), "create subtask should be available");
     }
 
     @Test
     public void createIssueWithEmptyFields() {
         createIssue.pressCreateMenuButton();
         createIssue.pressCreateIssueSubmitButton();
-        Assert.assertEquals(createIssue.validateErrorMessageToCreateIssue(),"You must specify a summary of the issue.");
+        Assertions.assertEquals(createIssue.validateErrorMessageToCreateIssue(),"You must specify a summary of the issue.");
         createIssue.pressCancelButtonToCreateIssue();
         createIssue.acceptAlert();
         createIssue.openIssuePage(Util.openIssuesUrl);
         createIssue.waitForOpenIssueTitle();
-        Assert.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"Empty");
+        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"Empty");
     }
 
     @Test
@@ -75,13 +74,13 @@ public class TestScript {
         createIssue.acceptAlert();
         createIssue.openIssuePage(Util.openIssuesUrl);
         createIssue.waitForOpenIssueTitle();
-        Assert.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"cancel issue test!");
+        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"cancel issue test!");
     }
 
     @Test
     public void browseIssueIsPossible() {
         browseIssue.openTestIssuePage("https://jira.codecool.codecanvas.hu/browse/MTP-1");
-        Assert.assertTrue("the header should be available", browseIssue.validateHeaderIsAvailable());
+        Assertions.assertTrue(browseIssue.validateHeaderIsAvailable(), "the header should be available");
     }
 
     @ParameterizedTest()
@@ -90,7 +89,7 @@ public class TestScript {
     public void browseIssuesForProjectsIsPossible(String issue) {
         String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
         browseIssue.openTestIssuePage(fullURL);
-        Assert.assertTrue("issue header should be available", browseIssue.validateHeaderIsAvailable());
+        Assertions.assertTrue(browseIssue.validateHeaderIsAvailable(), "issue header should be available");
     }
 
     @Test
@@ -100,7 +99,7 @@ public class TestScript {
         editIssue.enterNewSummary("Edited test");
         editIssue.pressUpdateButton();
         editIssue.waitForUpdateAlert();
-        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Edited test");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Edited test");
         editIssue.pressEditIssueButton();
         editIssue.enterNewSummary("Success!");
         editIssue.pressUpdateButton();
@@ -113,7 +112,7 @@ public class TestScript {
     public void editIssuesForProjects(String issue) {
         String fullURL = String.format("%s/browse/%s", Util.BASE_URL, issue);
         editIssue.openIssuePage(fullURL);
-        Assert.assertTrue("edit button should be available", editIssue.validateEditIssueButtonIsAvailable());
+        Assertions.assertTrue(editIssue.validateEditIssueButtonIsAvailable(), "edit button should be available");
     }
 
     @Test
@@ -122,10 +121,10 @@ public class TestScript {
         editIssue.pressEditIssueButton();
         editIssue.enterNewSummary("");
         editIssue.pressUpdateButton();
-        Assert.assertEquals(editIssue.validateErrorMessageToEditIssue(),"You must specify a summary of the issue.");
+        Assertions.assertEquals(editIssue.validateErrorMessageToEditIssue(),"You must specify a summary of the issue.");
         editIssue.pressCancelButtonToEdit();
         editIssue.acceptAlert();
-        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
     }
 
     @Test
@@ -135,7 +134,7 @@ public class TestScript {
         editIssue.enterNewSummary("cancel edited test");
         editIssue.pressCancelButtonToEdit();
         editIssue.acceptAlert();
-        Assert.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
     }
 
     @AfterEach

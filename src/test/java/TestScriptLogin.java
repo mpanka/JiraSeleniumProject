@@ -1,8 +1,4 @@
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import pageObjects.BrowseProjectPage;
 import pageObjects.LoginPage;
 import pageObjects.MainPage;
 import utils.Util;
@@ -24,7 +20,7 @@ public class TestScriptLogin {
     public void successfulLogin() {
         login.login();
         mainPage.pressProfileImage();
-        Assert.assertTrue("logout button should be available", mainPage.validateLogoutButtonIsAvailable());
+        Assertions.assertTrue(mainPage.validateLogoutButtonIsAvailable(), "logout button should be available");
         mainPage.pressLogoutButton();
     }
 
@@ -32,7 +28,7 @@ public class TestScriptLogin {
     public void loginWithoutUserInfos() {
         login.openBaseUrl();
         login.pressLoginButton();
-        Assert.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test
@@ -40,7 +36,7 @@ public class TestScriptLogin {
         login.openBaseUrl();
         login.enterValidUsername();
         login.pressLoginButton();
-        Assert.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test
@@ -49,14 +45,14 @@ public class TestScriptLogin {
         login.enterValidUsername();
         login.enterInvalidPassword();
         login.pressLoginButton();
-        Assert.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test
     public void successfulLogout() {
         login.login();
         mainPage.logout();
-        Assert.assertTrue("a login button should be available", mainPage.validateLogoutTitle());
+        Assertions.assertTrue(mainPage.validateLogoutTitle(), "a login button should be available");
     }
 
     @AfterAll
