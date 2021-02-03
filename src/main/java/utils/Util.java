@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Util {
 
-    public static final String CHROME_DRIVER_LOCATION = "C://Users//merva//chromedriver_win32//chromedriver.exe";
+    public static final String CHROME_DRIVER_LOCATION = "C://chromedriver_win32//chromedriver.exe";
     public static final String WEBDRIVER = "webdriver.chrome.driver";
     public static final WebDriver DRIVER = new ChromeDriver();
     public static final String USERNAME = System.getenv("jiraUsername");
