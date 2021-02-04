@@ -29,7 +29,7 @@ public class TestScript {
     public void browseProjectIsPossible(String url, String assertData) {
         String fullURL = String.format("%s/projects/%s/summary", Util.BASE_URL, url);
         browseProject.openProjectPage(fullURL);
-        Assertions.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData );
+        Assertions.assertEquals(browseProject.validateProjectKeyToBrowseProject(), assertData);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class TestScript {
         createIssue.enterNewSummary("Success!");
         createIssue.pressCreateIssueSubmitButton();
         createIssue.pressMTPProjectNameLink();
-        Assertions.assertEquals(createIssue.validateSummaryValueToCreateIssue(),"Success!");
+        Assertions.assertEquals(createIssue.validateSummaryValueToCreateIssue(), "Success!");
         createIssue.deleteIssue();
     }
 
@@ -56,12 +56,12 @@ public class TestScript {
     public void createIssueWithEmptyFields() {
         createIssue.pressCreateMenuButton();
         createIssue.pressCreateIssueSubmitButton();
-        Assertions.assertEquals(createIssue.validateErrorMessageToCreateIssue(),"You must specify a summary of the issue.");
+        Assertions.assertEquals(createIssue.validateErrorMessageToCreateIssue(), "You must specify a summary of the issue.");
         createIssue.pressCancelButtonToCreateIssue();
         createIssue.acceptAlert();
         createIssue.openIssuePage(Util.openIssuesUrl);
         createIssue.waitForOpenIssueTitle();
-        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"Empty");
+        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(), "Empty");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class TestScript {
         createIssue.acceptAlert();
         createIssue.openIssuePage(Util.openIssuesUrl);
         createIssue.waitForOpenIssueTitle();
-        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(),"cancel issue test!");
+        Assertions.assertNotEquals(createIssue.validateSummaryValueToCreateIssue(), "cancel issue test!");
     }
 
     @Test
@@ -99,7 +99,7 @@ public class TestScript {
         editIssue.enterNewSummary("Edited test");
         editIssue.pressUpdateButton();
         editIssue.waitForUpdateAlert();
-        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Edited test");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(), "Edited test");
         editIssue.pressEditIssueButton();
         editIssue.enterNewSummary("Success!");
         editIssue.pressUpdateButton();
@@ -121,10 +121,10 @@ public class TestScript {
         editIssue.pressEditIssueButton();
         editIssue.enterNewSummary("");
         editIssue.pressUpdateButton();
-        Assertions.assertEquals(editIssue.validateErrorMessageToEditIssue(),"You must specify a summary of the issue.");
+        Assertions.assertEquals(editIssue.validateErrorMessageToEditIssue(), "You must specify a summary of the issue.");
         editIssue.pressCancelButtonToEdit();
         editIssue.acceptAlert();
-        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(), "Success!");
     }
 
     @Test
@@ -134,7 +134,7 @@ public class TestScript {
         editIssue.enterNewSummary("cancel edited test");
         editIssue.pressCancelButtonToEdit();
         editIssue.acceptAlert();
-        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(),"Success!");
+        Assertions.assertEquals(editIssue.validateSummaryValueToEditIssue(), "Success!");
     }
 
     @AfterEach

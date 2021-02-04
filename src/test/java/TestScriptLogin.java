@@ -28,7 +28,7 @@ public class TestScriptLogin {
     public void loginWithoutUserInfos() {
         login.openBaseUrl();
         login.pressLoginButton();
-        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(), "Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class TestScriptLogin {
         login.openBaseUrl();
         login.enterValidUsername();
         login.pressLoginButton();
-        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(), "Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test
@@ -45,7 +45,7 @@ public class TestScriptLogin {
         login.enterValidUsername();
         login.enterInvalidPassword();
         login.pressLoginButton();
-        Assertions.assertEquals(login.validateErrorMessage(),"Sorry, your username and password are incorrect - please try again.");
+        Assertions.assertEquals(login.validateErrorMessage(), "Sorry, your username and password are incorrect - please try again.");
     }
 
     @Test

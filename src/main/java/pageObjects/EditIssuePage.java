@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class EditIssuePage extends BasePageObject{
+public class EditIssuePage extends BasePageObject {
 
     @FindBy(id = "edit-issue")
     protected WebElement editIssueButton;
@@ -21,29 +21,47 @@ public class EditIssuePage extends BasePageObject{
     @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
     protected WebElement updateAlert;
 
-    public EditIssuePage(WebDriver driver) { super(driver); }
+    public EditIssuePage(WebDriver driver) {
+        super(driver);
+    }
 
-    public void waitForCreateLink() { waitForVisibility(createLink); }
+    public void waitForCreateLink() {
+        waitForVisibility(createLink);
+    }
 
-    public void waitForUpdateAlert() { waitForVisibility(updateAlert); }
+    public void waitForUpdateAlert() {
+        waitForVisibility(updateAlert);
+    }
 
     public void openIssuePage(String issue) {
         goToUrl(issue);
     }
 
-    public boolean validateEditIssueButtonIsAvailable() { return validateIsEnabled(editIssueButton); }
+    public boolean validateEditIssueButtonIsAvailable() {
+        return validateIsEnabled(editIssueButton);
+    }
 
-    public void pressUpdateButton() { press(updateButton); }
+    public void pressUpdateButton() {
+        press(updateButton);
+    }
 
     public String validateSummaryValueToEditIssue() {
         return validateAssertEquals(summaryValue);
     }
 
-    public String validateErrorMessageToEditIssue() { return validateAssertEquals(errorMessageToEdit); }
+    public String validateErrorMessageToEditIssue() {
+        return validateAssertEquals(errorMessageToEdit);
+    }
 
-    public void pressCancelButtonToEdit() { press(cancelButtonToEdit); }
+    public void pressCancelButtonToEdit() {
+        press(cancelButtonToEdit);
+    }
 
-    public void enterNewSummary(String newSummary) { enter(summary, newSummary); }
+    public void enterNewSummary(String newSummary) {
+        enter(summary, newSummary);
+    }
 
-    public void pressEditIssueButton() { press(editIssueButton); }
+    public void pressEditIssueButton() {
+        press(editIssueButton);
+    }
 }

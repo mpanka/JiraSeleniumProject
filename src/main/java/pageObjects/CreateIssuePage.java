@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateIssuePage extends BasePageObject{
+public class CreateIssuePage extends BasePageObject {
 
     @FindBy(id = "create-issue-submit")
     protected WebElement creatIssueSubmit;
@@ -42,20 +42,30 @@ public class CreateIssuePage extends BasePageObject{
     }
 
     public void pressDeleteIssueButtonIsAvailable() {
-        if(deleteIssueButton.isEnabled() && deleteIssueButton.isDisplayed()) {
+        if (deleteIssueButton.isEnabled() && deleteIssueButton.isDisplayed()) {
             press(deleteIssueButton);
         }
     }
 
-    public String validateSummaryValueToCreateIssue() { return validateAssertEquals(summaryValue); }
+    public String validateSummaryValueToCreateIssue() {
+        return validateAssertEquals(summaryValue);
+    }
 
-    public void pressMTPProjectNameLink() { press(MTPLink); }
+    public void pressMTPProjectNameLink() {
+        press(MTPLink);
+    }
 
-    public void pressCreateIssueSubmitButton() { press(creatIssueSubmit); }
+    public void pressCreateIssueSubmitButton() {
+        press(creatIssueSubmit);
+    }
 
-    public void enterNewSummary(String newSummary) { enter(summary,newSummary); }
+    public void enterNewSummary(String newSummary) {
+        enter(summary, newSummary);
+    }
 
-    public void pressCreateMenuButton() { press(createLink); }
+    public void pressCreateMenuButton() {
+        press(createLink);
+    }
 
     public void openIssuePage(String url) {
         goToUrl(url);
@@ -71,11 +81,19 @@ public class CreateIssuePage extends BasePageObject{
         pressDeleteIssueSubmitButton();
     }
 
-    public boolean validateCreateSubtaskIsAvailable() { return validateIsEnabled(subtaskLink); }
+    public boolean validateCreateSubtaskIsAvailable() {
+        return validateIsEnabled(subtaskLink);
+    }
 
-    public String validateErrorMessageToCreateIssue() { return validateAssertEquals(errorMessageToCreate); }
+    public String validateErrorMessageToCreateIssue() {
+        return validateAssertEquals(errorMessageToCreate);
+    }
 
-    public void waitForOpenIssueTitle() { waitForVisibility(openIssuesTitle); }
+    public void waitForOpenIssueTitle() {
+        waitForVisibility(openIssuesTitle);
+    }
 
-    public void pressCancelButtonToCreateIssue() { press(cancelButton); }
+    public void pressCancelButtonToCreateIssue() {
+        press(cancelButton);
+    }
 }

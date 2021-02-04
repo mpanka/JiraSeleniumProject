@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class BrowseProjectPage extends BasePageObject{
+public class BrowseProjectPage extends BasePageObject {
 
     @FindBy(css = ".project-meta-value:nth-child(4)")
     protected WebElement projectKey;
@@ -33,9 +33,13 @@ public class BrowseProjectPage extends BasePageObject{
         return validateAssertEquals(projectKey);
     }
 
-    public void pressProjectNameLink() { press(nameLink); }
+    public void pressProjectNameLink() {
+        press(nameLink);
+    }
 
-    public void filterToMTPProject() { enter(projectFilter,"MTP"); }
+    public void filterToMTPProject() {
+        enter(projectFilter, "MTP");
+    }
 
     public void pressProjectMenuButton() {
         press(projectButton);
